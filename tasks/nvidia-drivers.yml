@@ -12,7 +12,10 @@
 
 - name: Install nvtop
   community.general.zypper:
-    name: nvtop
+    name: "{{ items }}"
     state: present
     disable_recommends: false
   become: true
+  loop:
+    - nvidia-utils-G06
+    - nvtop

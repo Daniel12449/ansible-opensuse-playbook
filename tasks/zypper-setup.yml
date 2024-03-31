@@ -1,0 +1,14 @@
+---
+- name: Perform a dist-upgrade 
+  community.general.zypper:
+    name: '*'
+    state: dist-upgrade
+  become: true
+
+- name: Install zypper packages
+  community.general.zypper:
+    name: "{{ item }}"
+    state: present
+    disable_recommends: false
+  loop: "{{ zypper_packages }}"
+  become: true

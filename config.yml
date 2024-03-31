@@ -26,4 +26,6 @@ flatpak_packages:
  # Install zypper package list
 install_zypper_packages: true
 zypper_packages:
+ - htop
+ - git
  - 
