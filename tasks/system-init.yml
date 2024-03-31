@@ -21,12 +21,12 @@
   ansible.builtin.systemd_service:
     state: started
     enabled: true
-    name: systemd-zram-service
+    name: systemd-zram-service.service
   become: true
 
 - name: Install power-profiles-daemon
   community.general.zypper:
-    name: power-profiles-daemon
+    name: power-profiles-daemon.service
     state: present
     disable_recommends: false
   become: true
@@ -35,5 +35,5 @@
   ansible.builtin.systemd_service:
     state: started
     enabled: true
-    name: power-profiles-daemon
+    name: power-profiles-daemon.service
   become: true
