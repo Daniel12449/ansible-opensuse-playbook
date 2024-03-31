@@ -28,4 +28,6 @@ install_zypper_packages: true
 zypper_packages:
  - htop
  - git
- - 
+ - ddcutil
+ - i2ctools
+ - python311-pipx
