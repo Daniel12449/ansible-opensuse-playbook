@@ -1,0 +1,16 @@
+---
+- name: Install flatpak package
+  community.general.zypper:
+    name: flatpak
+    state: present
+  become: true
+
+- name: Enable flatpak user repository
+  ansible.builtin.command: flatpak remote-add --user --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+- name: Install flatpak packages
+  community.general.flatpak:
+    name: "{{ item }}"
+    state: present
+    method: user
+  loop: "{{ flatpak_packages }}"

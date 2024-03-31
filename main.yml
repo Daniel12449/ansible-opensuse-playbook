@@ -1,0 +1,17 @@
+---
+- name: Configure host.
+  hosts: all
+
+  vars_files:
+    - config.yml
+
+  pre_tasks:
+    - name: Include playbook configuration.
+      include_vars: "{{ item }}"
+      with_fileglob:
+        - "{{ playbook_dir }}/config.yml"
+      tags: ['always']
+
+  tasks: 
+    - import_tasks: tasks/flatpak-setup.yml
+      when: configure_flatpak

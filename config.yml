@@ -1,0 +1,24 @@
+# Configure the playbook
+
+# Install and configure flatpak + install package list
+configure_flatpak: true
+flatpak_packages:
+ - com.discordapp.Discord
+ - com.prusa3d.PrusaSlicer
+ - com.valvesoftware.Steam
+ - com.visualstudio.code 
+ - org.chromium.Chromium
+ - org.electrum.electrum
+ - org.geeqie.Geeqie
+ - org.keepassxc.KeePassXC
+ - org.kicad.KiCad
+ - org.libreoffice.LibreOffice
+ - org.mozilla.Thunderbird
+ - org.prismlauncher.PrismLauncher
+ - org.stellarium.Stellarium
+ - org.videolan.VLC
+
+ # Install zypper package list
+install_zypper_packages: true
+zypper_packages:
+ - 
