@@ -1,0 +1,39 @@
+---
+- name: Install OBS Package Installer
+  community.general.zypper:
+    name: opi
+    state: present
+    disable_recommends: false
+  become: true
+
+- name: Install codecs
+  ansible.builtin.command: opi -n codecs
+  become: true
+
+- name: Install zram service
+  community.general.zypper:
+    name: systemd-zram-service
+    state: present
+    disable_recommends: false
+  become: true
+
+- name: Enable and start the zram-service
+  ansible.builtin.systemd_service:
+    state: started
+    enabled: true
+    name: systemd-zram-service
+  become: true
+
+- name: Install power-profiles-daemon
+  community.general.zypper:
+    name: power-profiles-daemon
+    state: present
+    disable_recommends: false
+  become: true
+
+- name: Enable and start the power-profiles-daemon
+  ansible.builtin.systemd_service:
+    state: started
+    enabled: true
+    name: power-profiles-daemon
+  become: true

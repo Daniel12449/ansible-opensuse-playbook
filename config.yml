@@ -1,9 +1,8 @@
 # Configure the playbook
 
 # General options
+system_init: true
 install_nvidia_drivers: false
-
-
 
 # Install and configure flatpak + install package list
 configure_flatpak: true

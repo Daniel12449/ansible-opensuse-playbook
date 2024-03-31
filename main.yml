@@ -13,6 +13,9 @@
       tags: ['always']
 
   tasks: 
+    - import_tasks: tasks/system-init.yml
+      when: system_init
+
     - import_tasks: tasks/flatpak-setup.yml
       when: configure_flatpak
 
