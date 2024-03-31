@@ -1,0 +1,11 @@
+---
+- name: Add nvidia driver repositories
+  community.general.zypper:
+    name: openSUSE-repos-NVIDIA
+    state: present
+    disable_recommends: false
+  become: true
+
+- name: Install nvidia drivers
+  ansible.builtin.command: zypper install-new-recommends --repo NVIDIA
+  become: true

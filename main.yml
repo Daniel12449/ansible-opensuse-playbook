@@ -15,3 +15,6 @@
   tasks: 
     - import_tasks: tasks/flatpak-setup.yml
       when: configure_flatpak
+
+    - import_tasks: tasks/nvidia-drivers.yml
+      when: install_nvidia_drivers
