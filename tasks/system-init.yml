@@ -37,3 +37,47 @@
     enabled: true
     name: power-profiles-daemon.service
   become: true
+
+- name: Install ddcutil packages
+  community.general.zypper:
+    name: "{{ item }}"
+    state: present
+    disable_recommends: false
+  loop: 
+   - ddcutil
+   - i2c-tools
+  become: true
+
+- name: Ensure group "i2c" exists
+  ansible.builtin.group:
+    name: i2c
+    state: present
+  become: true
+
+- name: Add the user to i2c group
+  ansible.builtin.user:
+    name: "{{ ansible_env.USER }}"
+    groups: i2c
+    append: yes
+  become: true
+
+- name: Copy file with owner and permissions
+  ansible.builtin.copy:
+    src: "{{ item }}"
+    dest: /etc/udev/rules.d/
+    remote_src: yes
+    owner: root
+    group: root
+    mode: '0644'
+  become: true
+  with_fileglob:
+    - "/usr/share/ddcutil/data/*.rules"
+
+  
+
+- name: Add nvidia-specific settings
+  when: install_nvidia_drivers
+  template:
+    src: templates/nvidia_i2c.conf.j2
+    dest: /etc/modprobe.d/nvidia_i2c.conf
+  become: true
