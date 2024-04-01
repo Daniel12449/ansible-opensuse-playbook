@@ -14,16 +14,9 @@
   ansible.builtin.command: udevadm trigger
   become: true
 
-- name: Make sure i2c-tools is installed
-  community.general.zypper:
-    name: i2c-tools
-    state: present
-    disable_recommends: false
-  become: true
-
 - name: Add the user to dialout and plugdev groups
   ansible.builtin.user:
     name: "{{ ansible_env.USER }}"
-    groups: dialout,plugdev 
+    groups: dialout
     append: yes
 
