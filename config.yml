@@ -29,5 +29,5 @@ zypper_packages:
  - htop
  - git
  - ddcutil
- - i2ctools
+ - i2c-tools
  - python311-pipx
