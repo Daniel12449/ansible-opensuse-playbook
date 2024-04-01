@@ -14,9 +14,10 @@
   ansible.builtin.command: udevadm trigger
   become: true
 
-- name: Add the user to dialout and plugdev groups
+- name: Add the user to dialout group
   ansible.builtin.user:
     name: "{{ ansible_env.USER }}"
     groups: dialout
     append: yes
+  become: true
 
