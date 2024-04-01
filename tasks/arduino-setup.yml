@@ -1,0 +1,29 @@
+---
+- name: Download udev rules
+  ansible.builtin.get_url:
+    url: https://raw.githubusercontent.com/platformio/platformio-core/develop/platformio/assets/system/99-platformio-udev.rules
+    dest: /etc/udev/rules.d/99-platformio-udev.rules
+    mode: '0644'
+  become: true
+
+- name: Reload udev rules
+  ansible.builtin.command: udevadm control --reload-rules
+  become: true
+
+- name: Trigger udev rules
+  ansible.builtin.command: udevadm trigger
+  become: true
+
+- name: Make sure i2c-tools is installed
+  community.general.zypper:
+    name: i2ctools
+    state: present
+    disable_recommends: false
+  become: true
+
+- name: Add the user to dialout and plugdev groups
+  ansible.builtin.user:
+    name: "{{ ansible_env.USER }}"
+    groups: dialout,plugdev 
+    append: yes
+

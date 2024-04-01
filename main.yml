@@ -24,3 +24,6 @@
 
     - import_tasks: tasks/nvidia-drivers.yml
       when: install_nvidia_drivers
+
+    - import_tasks: tasks/arduino-setup.yml
+      when: configure_arduino

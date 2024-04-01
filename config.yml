@@ -3,6 +3,7 @@
 # General options
 system_init: true
 install_nvidia_drivers: false
+configure_arduino: true
 
 # Install and configure flatpak + install package list
 configure_flatpak: true
